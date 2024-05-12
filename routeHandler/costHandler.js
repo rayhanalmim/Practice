@@ -10,13 +10,12 @@ const practiceData = require("../schemas/practiceSchema.js");
 router.get("/practice", async (req, res) => {
 
   const data = await practiceData.aggregate([
-    { $match: { gender: "Female", age: { $gt: 21 } } },
+    { $match: { gender: "Male", age: { $gt: 21 } } },
+    // {
+    //   $addFields :  {course : "next level web dev"}
+    // },
     {
-      $group: {
-        _id: "$age",  // Group by 'name' field
-        total: { $sum: 1 }, // Calculate the total number of documents in each group
-        averageAge: { $avg: "$age" } // Calculate the average age in each group
-      }
+      $project : {name: 1, gender: 1, age: 1, course: 1}
     }
   ]).exec();
   
