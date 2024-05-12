@@ -9,13 +9,24 @@ const practiceData = require("../schemas/practiceSchema.js");
 // --------------practice 
 router.get("/practice", async (req, res) => {
 
-  const data = practiceData.aggregate([
-    { $match: { gender: "male" } }
-  ])
+  const data = await practiceData.aggregate([
+    { $match: { age: "21" } }
+  ]).exec();
 
   console.log(data);
   res.send(data);
 
+});
+
+router.get("/practice2", async (req, res) => {
+  try {
+    const data = await practiceData.find({ age: 21 }, {  age: 1 } )
+    console.log(data);
+    res.send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 
