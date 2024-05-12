@@ -11,6 +11,7 @@ router.get("/practice", async (req, res) => {
 
   const data = await practiceData.aggregate([
     { $match: {  "name.firstName": "Candy" } },
+    { $set: { age: 60 } },
     { $project: { name: 1, age: 1 } }
   ]).exec();
 
