@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
  
 const Money = require("../schemas/moneySchemas.js");
+const { ObjectId } = require("mongodb");
 
  
 router.get("/", async (req, res) => {
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
 router.get("/singleShop", async (req, res) => {
   try {
     const id = req.query.id;
-    const costs = await Money.findOne({_id: id});
+    const costs = await Money.findOne({_id: new ObjectId(id)});
     res.send(costs);
   } catch (error) {
     console.error("Error fetching costs:", error);

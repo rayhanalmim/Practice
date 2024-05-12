@@ -17,7 +17,7 @@ const billHandler = require('../routeHandler/billHandler.js')
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // Adjust the limit as needed
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@tmwcorporation.i6hvwsv.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tdvw5wt.mongodb.net/?retryWrites=true&w=majority`;
 
 
 -mongoose.connect(uri, { dbName: process.env.DB_NAME });
