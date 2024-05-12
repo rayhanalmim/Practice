@@ -3,6 +3,13 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Cost = require("../schemas/costSchemas.js");
 
+{
+ //practice sections
+
+ 
+
+}
+
 router.get("/getCost", async (req, res) => {
   try {
     const userId = req.query.userId;
