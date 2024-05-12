@@ -3,12 +3,14 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Cost = require("../schemas/costSchemas.js");
 const billCollection = require("../schemas/billSchema.js");
+const practiceData = require("../schemas/practiceSchema.js");
 
 
 // --------------practice 
 router.get("/practice", async (req, res) => {
   try {
-
+ 
+    practiceData.create({name: "rayhan"})
     const data = billCollection.aggregate([
       { $match: { orderDate: "2024-05-03" }, },
       { $group: { _id: "$orderDate", totalQtn: {$sum : 1}
