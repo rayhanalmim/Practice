@@ -8,22 +8,14 @@ const practiceData = require("../schemas/practiceSchema.js");
 
 // --------------practice 
 router.get("/practice", async (req, res) => {
-  try {
- 
-    practiceData.create({name: "rayhan"})
-    const data = billCollection.aggregate([
-      { $match: { orderDate: "2024-05-03" }, },
-      { $group: { _id: "$orderDate", totalQtn: {$sum : 1}
-       } }
-    ])
 
-    console.log(data);
-    res.send(data);
+  const data = practiceData.aggregate([
+    { $match: { gender: "male" } }
+  ])
 
-  } catch (error) {
-    console.error("Error fetching cost:", error);
-    res.status(500).send({ error: "Internal Server Error" });
-  }
+  console.log(data);
+  res.send(data);
+
 });
 
 
