@@ -10,8 +10,9 @@ router.get("/practice", async (req, res) => {
   try {
 
     const data = billCollection.aggregate([
-      {$match: {  orderDate : "2024-05-03" }, },
-      {$group: { _id: "$orderDate"}}
+      { $match: { orderDate: "2024-05-03" }, },
+      { $group: { _id: "$orderDate", totalQtn: {$sum : 1}
+       } }
     ])
 
     console.log(data);
