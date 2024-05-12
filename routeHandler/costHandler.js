@@ -10,8 +10,8 @@ const practiceData = require("../schemas/practiceSchema.js");
 router.get("/practice", async (req, res) => {
 
   const data = await practiceData.aggregate([
-    { $match: { age: 21 } },
-    {$project: {name: 1, age: 1}}
+    { $match: { age: { $gt: 21 } } },
+    { $project: { name: 1, age: 1 } }
   ]).exec();
 
   console.log(data);
@@ -21,7 +21,7 @@ router.get("/practice", async (req, res) => {
 
 router.get("/practice2", async (req, res) => {
   try {
-    const data = await practiceData.find({ age: 21 }, {  age: 1 } )
+    const data = await practiceData.find({ age: 21 }, { age: 1 })
     console.log(data);
     res.send(data);
   } catch (error) {
