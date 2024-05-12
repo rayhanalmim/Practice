@@ -2,13 +2,23 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Cost = require("../schemas/costSchemas.js");
+const billCollection = require("../schemas/billSchema.js");
 
-{
- //practice sections
 
- 
+// --------------practice 
+router.get("/practice", async (req, res) => {
+  try {
+    const data = billCollection.aggregate([
+      {$match: { orderNo: "0511" }}
+    ])
+    console.log(data);
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching cost:", error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
+});
 
-}
 
 router.get("/getCost", async (req, res) => {
   try {
