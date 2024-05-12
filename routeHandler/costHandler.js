@@ -8,11 +8,15 @@ const billCollection = require("../schemas/billSchema.js");
 // --------------practice 
 router.get("/practice", async (req, res) => {
   try {
+
     const data = billCollection.aggregate([
-      {$match: { orderNo: "0511" }}
+      {$match: {  orderDate : "2024-05-03" }, },
+      {$group: { _id: "$orderDate"}}
     ])
+
     console.log(data);
     res.send(data);
+
   } catch (error) {
     console.error("Error fetching cost:", error);
     res.status(500).send({ error: "Internal Server Error" });
