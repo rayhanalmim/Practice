@@ -13,7 +13,7 @@ router.get("/practice", async (req, res) => {
     {
       $bucket : {
         groupBy: '$age',
-        boundaries: [20, 40, 60],
+        boundaries: [0, 20, 40, Infinity],
         default: 'remain: ',
         output: {
           'count': {$sum: 1},
