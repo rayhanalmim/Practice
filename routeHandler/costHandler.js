@@ -9,8 +9,10 @@ const practiceData = require("../schemas/practiceSchema.js");
 // --------------practice 
 router.get("/practice", async (req, res) => {
 
-  const data = await practiceData.aggregate([{}]).exec();
-  
+  const data = await practiceData.aggregate([
+    { $match : {gender: 'Male'} }
+  ]).exec();
+
 
   console.log(data);
   res.send(data);
