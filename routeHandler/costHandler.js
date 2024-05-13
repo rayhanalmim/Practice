@@ -10,6 +10,26 @@ const practiceData = require("../schemas/practiceSchema.js");
 router.get("/practice", async (req, res) => {
 
   const data = await practiceData.aggregate([
+    {
+      $facet : {
+        outpurOne: [
+          {
+            $bucket : {
+              groupBy: '$age',
+              boundaries: [0, 20, 40, Infinity],
+              default: 'remain: ',
+              output: {
+                'count': {$sum: 1},
+                'persons' : {$push : '$age'}
+              }
+            }
+          }
+        ], 
+        outputTwo: [
+          {$group : {_id: '$age', personsWithSameAge: {$sum: '$age'}}}
+        ]
+      }
+    }
   ]).exec();
 
 
