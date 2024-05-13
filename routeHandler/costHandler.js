@@ -9,11 +9,7 @@ const practiceData = require("../schemas/practiceSchema.js");
 // --------------practice 
 router.get("/practice", async (req, res) => {
 
-  const data = await practiceData.aggregate([
-   {
-    $group : {_id : null, totalSelary: {$sum: "$salary"}, nameCollection: {$push : "$name"}, totalPerson : {$sum: 1}}
-   }
-  ]).exec();
+  const data = await practiceData.aggregate([{}]).exec();
   
 
   console.log(data);
