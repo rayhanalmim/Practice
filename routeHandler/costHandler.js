@@ -10,8 +10,6 @@ const practiceData = require("../schemas/practiceSchema.js");
 router.get("/practice", async (req, res) => {
 
   const data = await practiceData.aggregate([
-    {$unwind : '$interests'},
-    {$group : {_id: '$interests', interstedArray: {$push : '$interests'}}}
   ]).exec();
 
 
