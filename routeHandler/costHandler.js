@@ -30,6 +30,7 @@ router.get("/practice", async (req, res) => {
         ]
       }
     }
+    
   ]).exec();
 
 
